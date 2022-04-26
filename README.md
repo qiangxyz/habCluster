@@ -66,5 +66,5 @@ plot(clst$boundary,add=T,asp=1,border="lightseagreen")
 
 ## How to Cite
 
-Zhang, C., D. Qiang\*, et al, (in review). Identifying Geographical
+Zhang, C., Q. Dai\*, et al, (in review). Identifying Geographical
 Boundary among Intraspecific Units Using Community Detection Algorithm.
