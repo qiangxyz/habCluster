@@ -46,7 +46,7 @@ amount. Set cluster_resolution_parameter to 0.02 to control the cluster
 size.
 
 ``` r
-clst = cluster(wolf,method=cluster_leiden,res=40000,cluster_resolution_parameter=0.02,silent = FALSE)
+clst = cluster(wolf, method = cluster_leiden, res = 40000, rp = 0.02, silent = FALSE)
 #> 
 #> resampling...
 #> extracting edges...
@@ -58,8 +58,8 @@ clst = cluster(wolf,method=cluster_leiden,res=40000,cluster_resolution_parameter
 You can also embed plots, for example:
 
 ``` r
-image(wolf,col=terrain.colors(100,rev = T),asp = 1)
-plot(clst$boundary,add=T,asp=1,border="lightseagreen")
+image(wolf, col = terrain.colors(100,rev = T), asp = 1)
+plot(clst$boundary, add = T, asp = 1, border = "lightseagreen")
 ```
 
 <img src="man/figures/README-cluster-1.png" width="100%" />

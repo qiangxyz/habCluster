@@ -6,7 +6,7 @@
 #' @param r an object of igraph, or raster. The value of each cell of the raster is the ‘smoothness’ to indicated how easy the cell connecting with neighbor cells.
 #' @param method method from package igraph used to finding community structure. (see details below).
 #' @param res Numeric. Resample the input raster to given resolution and use the resampled raster to find community structure. Set this to NULL if using the original resolution of of the input raster,given the parameter r is an object of raster.
-#' @param cluster_resolution_parameter If cluster_leiden is chosen, use it to control the size of clusters. Higher resolution_parameter lead to more smaller clusters, while lower resolution_parameter lead to fewer larger clusters.
+#' @param rp Float. The resolution parameter for method of cluster_leiden. If cluster_leiden is chosen, use it to control the size of clusters. Higher resolution parameter lead to more smaller clusters, while lower resolution parameter lead to fewer larger clusters.
 #' @param ... optional arguments to method
 #'
 #' @details Choice of the method used to finding community structure(see Mukerjee, 2014). The default method is cluster_louvain, but could also be methods like cluster_leiden, cluster_walktrap, or cluster_fast_greedy. If cluster_leiden is chosen, then we can use resolution_parameter to control the size of clusters. Higher resolution_parameter lead to more smaller clusters, while lower resolution_parameter lead to fewer larger clusters.
@@ -22,28 +22,28 @@
 #' @examples
 #' # read in habitat suitability data of wolf in Europe
 #' library(raster)
-#' hsi.file = system.file("extdata","wolf3_int.tif",package="habCluster")
+#' hsi.file = system.file("extdata","wolf3_int.tif",package = "habCluster")
 #' wolf = raster(hsi.file)
 #'
 #' # find habitat cluster using Leiden Algorithm.
 #' # Raster for habitat suitability will be resampled to 40 km, to reduce calculation amount.
 #' # Set cluster_resolution_parameter to 0.02 to control the cluster size.
-#' clst = cluster(wolf,method=cluster_leiden,res=40000,cluster_resolution_parameter=0.02)
+#' clst = cluster(wolf, method = cluster_leiden, res = 40000, rp = 0.02)
 #'
 #' # plot the results
 #' image(wolf,col=terrain.colors(100,rev = T),asp = 1)
-#' plot(clst$boundary,add=T,asp=1,border="lightseagreen")
+#' plot(clst$boundary, add=T, asp=1, border = "lightseagreen")
 
-cluster <- function(r=NULL,method=cluster_louvain,res=NULL,cluster_resolution_parameter=1,silent=TRUE,...){
+cluster <- function(r=NULL, method=cluster_louvain, res=NULL, rp=1, silent=TRUE,...){
 
-  g = raster2Graph(r,res,silent)
+  g = raster2Graph(r, res, silent)
 
   if(!silent){
     cat('\nfinding clusters...')
   }
 
   if(identical(method, cluster_leiden)){
-    clusters = cluster_leiden(g$graph,resolution_parameter=cluster_resolution_parameter,...)
+    clusters = cluster_leiden(g$graph, resolution_parameter = rp,...)
   }else{
     clusters = method(g$graph,...)
   }
@@ -56,7 +56,7 @@ cluster <- function(r=NULL,method=cluster_louvain,res=NULL,cluster_resolution_pa
   cluster.raster = g$raster
   cluster.raster[cell.id] = cluster.id
   boundaries = rasterToPolygons(cluster.raster,dissolve=TRUE)
-  names(boundaries)= 'cluster.id'
+  names(boundaries) = 'cluster.id'
   out=list()
   out$boundary = boundaries
   out$communities = clusters

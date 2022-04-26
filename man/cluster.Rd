@@ -8,7 +8,7 @@ cluster(
   r = NULL,
   method = cluster_louvain,
   res = NULL,
-  cluster_resolution_parameter = 1,
+  rp = 1,
   silent = TRUE,
   ...
 )
@@ -20,7 +20,7 @@ cluster(
 
 \item{res}{Numeric. Resample the input raster to given resolution and use the resampled raster to find community structure. Set this to NULL if using the original resolution of of the input raster,given the parameter r is an object of raster.}
 
-\item{cluster_resolution_parameter}{If cluster_leiden is chosen, use it to control the size of clusters. Higher resolution_parameter lead to more smaller clusters, while lower resolution_parameter lead to fewer larger clusters.}
+\item{rp}{Float. The resolution parameter for method of cluster_leiden. If cluster_leiden is chosen, use it to control the size of clusters. Higher resolution parameter lead to more smaller clusters, while lower resolution parameter lead to fewer larger clusters.}
 
 \item{...}{optional arguments to method}
 }
@@ -37,17 +37,17 @@ Choice of the method used to finding community structure(see Mukerjee, 2014). Th
 \examples{
 # read in habitat suitability data of wolf in Europe
 library(raster)
-hsi.file = system.file("extdata","wolf3_int.tif",package="habCluster")
+hsi.file = system.file("extdata","wolf3_int.tif",package = "habCluster")
 wolf = raster(hsi.file)
 
 # find habitat cluster using Leiden Algorithm.
 # Raster for habitat suitability will be resampled to 40 km, to reduce calculation amount.
 # Set cluster_resolution_parameter to 0.02 to control the cluster size.
-clst = cluster(wolf,method=cluster_leiden,res=40000,cluster_resolution_parameter=0.02)
+clst = cluster(wolf, method = cluster_leiden, res = 40000, rp = 0.02)
 
 # plot the results
 image(wolf,col=terrain.colors(100,rev = T),asp = 1)
-plot(clst$boundary,add=T,asp=1,border="lightseagreen")
+plot(clst$boundary, add=T, asp=1, border = "lightseagreen")
 }
 \references{
 Mukerjee, S. (2021). A systematic comparison of community detection algorithms for measuring selective exposure in co-exposure networks. Sci Rep 11, 15218. https://doi.org/10.1038/s41598-021-94724-1\cr

@@ -20,9 +20,9 @@ Create a graph from an raster according the connection between cells
 \examples{
 # read in habitat suitability data of wolf in Europe
 library(raster)
-hsi.file = system.file("extdata","wolf3_int.tif",package="habCluster")
+hsi.file = system.file("extdata", "wolf3_int.tif", package = "habCluster")
 wolf = raster(hsi.file)
 
 # build graph from raster
-g = raster2Graph(wolf,40000)
+g = raster2Graph(wolf, 40000)
 }
