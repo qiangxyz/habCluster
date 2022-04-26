@@ -42,7 +42,7 @@ wolf = raster(hsi.file)
 
 Find habitat cluster using Leiden Algorithm. Raster for habitat
 suitability will be resampled to 40 km (40000m), to reduce calculation
-amount.Set cluster_resolution_parameter to 0.02 to control the cluster
+amount. Set cluster_resolution_parameter to 0.02 to control the cluster
 size.
 
 ``` r
@@ -56,6 +56,11 @@ clst = cluster(wolf,method=cluster_leiden,res=40000,cluster_resolution_parameter
 ```
 
 You can also embed plots, for example:
+
+``` r
+image(wolf,col=terrain.colors(100,rev = T),asp = 1)
+plot(clst$boundary,add=T,asp=1,border="lightseagreen")
+```
 
 <img src="man/figures/README-cluster-1.png" width="100%" />
 
