@@ -1,4 +1,5 @@
 
+
 #' Clustering cells from a raster by Community Detection Algorithm according to the connections between them and return a cluster map
 #'
 #' @description This function use Community Detection Algorithm to find structure of raster and return a polygon representing the boundary of the clusters.
