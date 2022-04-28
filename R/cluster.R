@@ -22,7 +22,7 @@
 #' @examples
 #' # read in habitat suitability data of wolf in Europe
 #' library(raster)
-#' hsi.file = system.file("extdata","wolf3_int.tif",package = "habCluster")
+#' hsi.file = system.file("extdata","wolf3_int.tif",package="habCluster")
 #' wolf = raster(hsi.file)
 #'
 #' # find habitat cluster using Leiden Algorithm.

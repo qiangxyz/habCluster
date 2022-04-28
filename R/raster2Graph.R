@@ -10,9 +10,8 @@
 #' @examples
 #' # read in habitat suitability data of wolf in Europe
 #' library(raster)
-#' hsi.file = system.file("extdata", "wolf3_int.tif", package = "habCluster")
+#' hsi.file = system.file("extdata","wolf3_int.tif",package="habCluster")
 #' wolf = raster(hsi.file)
-#'
 #' # build graph from raster
 #' g = raster2Graph(wolf, 40000)
 
@@ -20,7 +19,7 @@ raster2Graph  <- function(r, res=NULL,silent=TRUE){
 
   r2 = NULL
   if(!is.null(res)){
-    mask = raster::raster(ext = extent(r), crs = crs(r), res = res)
+    mask = raster::raster(ext = raster::extent(r), crs = raster::crs(r), res = res)
     if(!silent){
     cat('\nresampling...')
     }
