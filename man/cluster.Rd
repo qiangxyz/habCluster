@@ -14,7 +14,7 @@ cluster(
 )
 }
 \arguments{
-\item{r}{an object of igraph, or raster. The value of each cell of the raster is the ‘smoothness’ to indicated how easy the cell connecting with neighbor cells.}
+\item{r}{an object of igraph, or raster. The value of each cell of the raster is the ‘smoothness’ to indicate how easy the cell connecting with neighbor cells.}
 
 \item{method}{method from package igraph used to finding community structure. (see details below).}
 

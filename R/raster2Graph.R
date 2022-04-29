@@ -1,7 +1,7 @@
 
 #' Create a graph from an raster according the connection between cells
 #'
-#' @param r  an object of raster. The value of each cell of the raster is the ‘smoothness’ to indicated how easy the cell connecting with neighbor cells.
+#' @param r  an object of raster. The value of each cell of the raster is the ‘smoothness’ to indicate how easy the cell connecting with neighbor cells.
 #' @param res Numeric. Resample the input raster to given resolution and use the resampled raster to build graph. Set this to NULL if using the original resolution of of the input raster.
 #'
 #' @return a list with an graph and the resampled raster. The graph is igraph object, with cells as node and connections as weight

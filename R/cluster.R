@@ -3,7 +3,7 @@
 #' Clustering cells from a raster by Community Detection Algorithm according to the connections between them and return a cluster map
 #'
 #' @description This function use Community Detection Algorithm to find structure of raster and return a polygon representing the boundary of the clusters.
-#' @param r an object of igraph, or raster. The value of each cell of the raster is the ‘smoothness’ to indicated how easy the cell connecting with neighbor cells.
+#' @param r an object of igraph, or raster. The value of each cell of the raster is the ‘smoothness’ to indicate how easy the cell connecting with neighbor cells.
 #' @param method method from package igraph used to finding community structure. (see details below).
 #' @param res Numeric. Resample the input raster to given resolution and use the resampled raster to find community structure. Set this to NULL if using the original resolution of of the input raster,given the parameter r is an object of raster.
 #' @param rp Float. The resolution parameter for method of cluster_leiden. If cluster_leiden is chosen, use it to control the size of clusters. Higher resolution parameter lead to more smaller clusters, while lower resolution parameter lead to fewer larger clusters.

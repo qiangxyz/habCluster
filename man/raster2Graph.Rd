@@ -7,7 +7,7 @@
 raster2Graph(r, res = NULL, silent = TRUE)
 }
 \arguments{
-\item{r}{an object of raster. The value of each cell of the raster is the ‘smoothness’ to indicated how easy the cell connecting with neighbor cells.}
+\item{r}{an object of raster. The value of each cell of the raster is the ‘smoothness’ to indicate how easy the cell connecting with neighbor cells.}
 
 \item{res}{Numeric. Resample the input raster to given resolution and use the resampled raster to build graph. Set this to NULL if using the original resolution of of the input raster.}
 }
