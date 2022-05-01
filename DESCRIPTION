@@ -1,10 +1,10 @@
 Package: habCluster
 Type: Package
-Title: Detecting Spatial Clustering Based on Connection Cost between Grids
-Version: 0.1.0.0000
+Title: Detecting Spatial Clustering Based on Connection Cost Between Grids
+Version: 1.0.0
 Date: 2022-04-21
 Author: Qiang Dai
-Maintainer: Qiang Dai <qiang.dai@hotmail.com>
+Maintainer: Qiang Dai <daiqiang@cib.ac.cn>
 Description: Based on landscape connectivity, spatial boundaries were
         identified using community detection algorithm at grid level. Methods 
         using raster as input and the value of each cell of the raster is the 
@@ -14,9 +14,10 @@ Depends:
     R (>= 4.0.0),
     igraph (>= 1.3.0),
     raster (>= 3.5.0),
-    rgeos (>= 0.5.8)
+    rgeos(>= 0.5-1)
 Imports: 
-    Rcpp (>= 1.0.7)
+    Rcpp (>= 1.0.7),
+    rgdal (>= 1.5.0)
 LinkingTo: 
     Rcpp (>= 1.0.7)
 Encoding: UTF-8

@@ -4,7 +4,7 @@
 \name{habCluster-package}
 \alias{habCluster}
 \alias{habCluster-package}
-\title{habCluster: Detecting Spatial Clustering Based on Connection Cost between Grids}
+\title{habCluster: Detecting Spatial Clustering Based on Connection Cost Between Grids}
 \description{
 Based on landscape connectivity, spatial boundaries were identified using community detection algorithm at grid level. Methods using raster as input and the value of each cell of the raster is the ‘smoothness’ to indicate how easy the cell connecting with neighbor cells.
 
@@ -27,7 +27,7 @@ Key content of the 'envi' package include:\cr
 \author{
 Qiang Dai\cr \emph{Chengdu Institute of Biology, Chinese Academy of Sciences.}\cr
 
-Maintainer: Qiang Dai \email{qiang.dai@hotmail.com}
+Maintainer: Qiang Dai \email{daiqiang@cib.ac.cn}
 }
 \keyword{internal}
 \keyword{package}

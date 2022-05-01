@@ -6,7 +6,7 @@
 \usage{
 cluster(
   r = NULL,
-  method = cluster_louvain,
+  method = igraph::cluster_louvain,
   res = NULL,
   rp = 1,
   silent = TRUE,
@@ -21,6 +21,8 @@ cluster(
 \item{res}{Numeric. Resample the input raster to given resolution and use the resampled raster to find community structure. Set this to NULL if using the original resolution of of the input raster,given the parameter r is an object of raster.}
 
 \item{rp}{Float. The resolution parameter for method of cluster_leiden. If cluster_leiden is chosen, use it to control the size of clusters. Higher resolution parameter lead to more smaller clusters, while lower resolution parameter lead to fewer larger clusters.}
+
+\item{silent}{Boolean. A logical indicating if some “progress report” should be given. Default is TRUE.}
 
 \item{...}{optional arguments to method}
 }
@@ -46,8 +48,8 @@ wolf = raster(hsi.file)
 clst = cluster(wolf, method = cluster_leiden, res = 40000, rp = 0.02)
 
 # plot the results
-image(wolf,col=terrain.colors(100,rev = T),asp = 1)
-plot(clst$boundary, add=T, asp=1, border = "lightseagreen")
+image(wolf,col=terrain.colors(100,rev = TRUE),asp = 1)
+plot(clst$boundary, add=TRUE, asp=1, border = "lightseagreen")
 }
 \references{
 Mukerjee, S. (2021). A systematic comparison of community detection algorithms for measuring selective exposure in co-exposure networks. Sci Rep 11, 15218. https://doi.org/10.1038/s41598-021-94724-1\cr

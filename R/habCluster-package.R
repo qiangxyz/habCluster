@@ -24,7 +24,7 @@
 #'
 #' @author Qiang Dai\cr \emph{Chengdu Institute of Biology, Chinese Academy of Sciences.}\cr
 #'
-#' Maintainer: Qiang Dai \email{qiang.dai@@hotmail.com}
+#' Maintainer: Qiang Dai \email{daiqiang@@cib.ac.cn}
 #'
 #' @keywords package
 #'
@@ -33,5 +33,7 @@
 ## usethis namespace: end
 #' @useDynLib habCluster
 #' @importFrom Rcpp sourceCpp
+#' @importFrom igraph membership cluster_fast_greedy cluster_louvain cluster_optimal cluster_walktrap cluster_infomap
+#' @importFrom raster raster rasterToPolygons
 NULL
 
