@@ -24,7 +24,7 @@
 #'
 #' @author Qiang Dai\cr \emph{Chengdu Institute of Biology, Chinese Academy of Sciences.}\cr
 #'
-#' Maintainer: Qiang Dai \email{daiqiang@@cib.ac.cn}
+#' Maintainer: Qiang Dai \email{qiang.dai@@hotmail.com}
 #'
 #' @keywords package
 #'
