@@ -10,7 +10,7 @@
 #'
 
 #'
-#' Key content of the 'envi' package include:\cr
+#' Key content of the 'habCluster' package include:\cr
 #'
 #' \bold{Spatial Cluster Detection}
 #'
@@ -30,10 +30,14 @@
 #'
 #'
 ## usethis namespace: start
-## usethis namespace: end
-#' @useDynLib habCluster
-#' @importFrom Rcpp sourceCpp
 #' @importFrom igraph membership cluster_fast_greedy cluster_louvain cluster_optimal cluster_walktrap cluster_infomap
-#' @importFrom raster raster rasterToPolygons
+#' @importFrom methods is
+#' @importFrom raster raster
+#' @importFrom Rcpp sourceCpp
+#' @importFrom sf st_as_sf st_crs
+#' @importFrom stars st_warp st_as_stars
+#' @useDynLib habCluster
+#' @useDynLib habCluster, .registration = TRUE
+## usethis namespace: end
 NULL
 

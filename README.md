@@ -26,8 +26,10 @@ This is a basic example which shows you how to find the cluster of
 lands:
 
 ``` r
+library(sf)
 library(raster)
 library(habCluster)
+library(dplyr)
 ```
 
 Read in habitat suitability index (HSI) data of wolf in Europe. The HSI
@@ -41,12 +43,14 @@ wolf = raster(hsi.file)
 ```
 
 Find habitat cluster using Leiden Algorithm. Raster for habitat
-suitability will be resampled to 40 km (40000m), to reduce calculation
+suitability will be resampled to 40 km (40000 m), to reduce calculation
 amount. Set cluster_resolution_parameter to 0.02 to control the cluster
-size.
+size. Note that the parameter of cellsize controls the spatial scale
+analysis is performed, while the parameter of rp is used to control
+cluster size.
 
 ``` r
-clst = cluster(wolf, method = cluster_leiden, res = 40000, rp = 0.02, silent = FALSE)
+clst = cluster(wolf, method = cluster_leiden, cellsize = 40000, rp = 0.02, silent = FALSE)
 #> 
 #> resampling...
 #> extracting edges...
@@ -55,14 +59,41 @@ clst = cluster(wolf, method = cluster_leiden, res = 40000, rp = 0.02, silent = F
 #> preparing results...
 ```
 
-You can also embed plots, for example:
+We can also embed plots, for example:
 
 ``` r
 image(wolf, col = terrain.colors(100,rev = T), asp = 1)
-plot(clst$boundary, add = T, asp = 1, border = "lightseagreen")
+boundary = clst$boundary
+plot( boundary$geometry, add=TRUE, asp=1, border = "lightseagreen")
 ```
 
 <img src="man/figures/README-cluster-1.png" width="100%" />
+
+Or, we can discard small patches before plotting:
+
+``` r
+image(wolf, col = terrain.colors(100,rev = T), asp = 1)
+boundary$area = st_area(boundary)%>%as.numeric
+boundary = boundary %>% filter(area > 40000*40000)
+plot( boundary$geometry, add=TRUE, asp=1, border = "lightseagreen")
+```
+
+<img src="man/figures/README-discard-1.png" width="100%" />
+
+Using stars to manipulate the raster will make the computation more
+quick:
+
+``` r
+hsi.file = system.file("extdata","wolf3_int.tif",package="habCluster")
+wolf = read_stars(hsi.file)
+clst = cluster(wolf, method = cluster_leiden, cellsize = 40000, rp = 0.02, silent = FALSE)
+#> 
+#> resampling...
+#> extracting edges...
+#> create graph...
+#> finding clusters...
+#> preparing results...
+```
 
 ## How to Cite
 

@@ -4,26 +4,26 @@
 \alias{raster2Graph}
 \title{Create a graph from an raster according the connection between cells}
 \usage{
-raster2Graph(r, res = NULL, silent = TRUE)
+raster2Graph(r, cellsize = NULL, silent = TRUE)
 }
 \arguments{
-\item{r}{an object of raster. The value of each cell of the raster is the ‘smoothness’ to indicate how easy the cell connecting with neighbor cells.}
+\item{r}{An object of stars or RasterLayer. The value of each cell of the raster is the ‘smoothness’ to indicate how easy the cell connecting with neighbor cells.}
 
-\item{res}{Numeric. Resample the input raster to given resolution and use the resampled raster to build graph. Set this to NULL if using the original resolution of of the input raster.}
+\item{cellsize}{Numeric. Re-sample the input raster to given resolution and use the re-sampled raster to build graph. Set this to NULL if using the original resolution of of the input raster.}
 
 \item{silent}{Boolean. A logical indicating if some “progress report” should be given. Default is TRUE.}
 }
 \value{
-a list with an graph and the resampled raster. The graph is igraph object, with cells as node and connections as weight
+a list with an graph and the re-sampled raster (a object of stars). The graph is igraph object, with cells as node and connections as weight.
 }
 \description{
 Create a graph from an raster according the connection between cells
 }
 \examples{
 # read in habitat suitability data of wolf in Europe
-library(raster)
+library(stars)
 hsi.file = system.file("extdata","wolf3_int.tif",package="habCluster")
-wolf = raster(hsi.file)
+wolf = read_stars(hsi.file)
 # build graph from raster
 g = raster2Graph(wolf, 40000)
 }

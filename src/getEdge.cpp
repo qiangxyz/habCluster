@@ -3,8 +3,8 @@ using namespace Rcpp;
 using namespace std;
 
 
-long getCellID(int &r, int &c, int &ncol){
-  return ncol*(r)+c+1;
+long getCellID(int &r, int &c, int &nrow){
+  return nrow*(c)+r+1;
 }
 
 bool hasEdge(int &from, int &to, map<int,set<int>> &mp){
@@ -48,9 +48,9 @@ DataFrame getEdgeDF(NumericMatrix &m){
             continue;
           }
 
-          int from = getCellID(r0,c0,ncol);
+          int from = getCellID(r0,c0,nrow);
           // cout<< r0 <<","<< c0 <<": "<<from<<endl;
-          int to = getCellID(r1,c1,ncol);
+          int to = getCellID(r1,c1,nrow);
 
           // check whether the edge is duplicated as undirected;
           if(hasEdge(to,from,oldEdges)){

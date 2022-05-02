@@ -6,7 +6,7 @@
 \alias{habCluster-package}
 \title{habCluster: Detecting Spatial Clustering Based on Connection Cost Between Grids}
 \description{
-Based on landscape connectivity, spatial boundaries were identified using community detection algorithm at grid level. Methods using raster as input and the value of each cell of the raster is the ‘smoothness’ to indicate how easy the cell connecting with neighbor cells.
+Based on landscape connectivity, spatial boundaries were identified using community detection algorithm at grid level. Methods using raster as input and the value of each cell of the raster is the "smoothness" to indicate how easy the cell connecting with neighbor cells.
 
 Spatial explicitly identify the structure of landscape base on cost (weighted) connection at grid scale, using community detection algorithm from graph theory.
 }
@@ -14,7 +14,7 @@ Spatial explicitly identify the structure of landscape base on cost (weighted) c
 Based on landscape connectivity, spatial boundaries were identified using community detection algorithm at grid level. Methods using raster as input and the value of each cell of the raster is the ‘smoothness’ to indicate how easy the cell connecting with neighbor cells. The method can be use to find habitat clusters for wildlife from a map of habitat suitability index, and thus can be used to detect the spatial boundaries among populations or other intraspecific units.
 
 
-Key content of the 'envi' package include:\cr
+Key content of the 'habCluster' package include:\cr
 
 \bold{Spatial Cluster Detection}
 

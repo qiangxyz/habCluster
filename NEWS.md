@@ -1,3 +1,11 @@
 # habCluster 1.0.1
 
-* Added a `NEWS.md` file to track changes to the package.
+## Enhancements
+* cluster() and raster2graph accept both stars and RasterLayer as parameter now.
+
+## Changes
+* cluster() returns an object of sf, instead of SpatialPolygonsDataFrame.
+
+
+# habCluster 1.0.0
+* First public release.
