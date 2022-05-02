@@ -1,7 +1,7 @@
 Package: habCluster
 Type: Package
 Title: Detecting Spatial Clustering Based on Connection Cost Between Grids
-Version: 1.0.0
+Version: 1.0.0.9000
 Date: 2022-04-21
 Author: Qiang Dai
 Maintainer: Qiang Dai <daiqiang@cib.ac.cn>
@@ -13,19 +13,21 @@ License: GPL (>= 3)
 Depends:
     R (>= 4.0.0),
     igraph (>= 1.3.0),
-    raster (>= 3.5.0),
-    rgeos(>= 0.5-1)
+    stars (>= 0.5-0),
+    sf (>= 1.0.0),
+    methods
 Imports: 
-    Rcpp (>= 1.0.7),
-    rgdal (>= 1.5.0)
+    Rcpp,
+    raster
 LinkingTo: 
-    Rcpp (>= 1.0.7)
+    Rcpp
 Encoding: UTF-8
 RoxygenNote: 7.1.2
 LazyData: true
 Suggests: 
     knitr,
     rmarkdown,
+    dplyr,
     testthat (>= 3.1.0)
 Config/testthat/edition: 3
 VignetteBuilder: knitr
