@@ -24,7 +24,6 @@
 #' @examples
 #' library(sf)
 #' library(stars)
-#' library(dplyr)
 #'
 #' # read in habitat suitability data of wolf in Europe
 #' library(stars)
@@ -42,17 +41,16 @@
 #' plot( boundary$geometry, add=TRUE, asp=1, border = "lightseagreen")
 #'
 #' # discard patches smaller than 1600 sqkm
-#' boundary$area = st_area(boundary)%>%as.numeric
-#' boundary = boundary %>% filter(area > 40000*40000)
+#' boundary$area = as.numeric(st_area(boundary))
+#' boundary = boundary[boundary$area > 40000*40000,]
 #' image(wolf,col=terrain.colors(100,rev = TRUE),asp = 1)
 #' plot( boundary$geometry, add=TRUE, asp=1, border = "lightseagreen")
 #'
-#' # can also use RasterLayer object
-#' \dontrun{
+#' # can also use RasterLayer object#
 #' library(raster)
 #' wolf = read_stars(hsi.file)
 #' clst = cluster(wolf, method = cluster_leiden, cellsize = 40000, rp = 0.02)
-#' }
+
 
 cluster <- function(r=NULL, method=igraph::cluster_louvain, cellsize=NULL, rp=1, silent=TRUE,...){
 

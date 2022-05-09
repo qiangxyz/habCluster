@@ -29,11 +29,10 @@ devtools::install_github("qiangxyz/habCluster")
 
 This is a basic example which shows you how to find the cluster of lands:
 
-```{r example, message=FALSE, warning=FALSE, paged.print=TRUE}
+```{r example, message=FALSE, warning=FALSE, include=FALSE, paged.print=TRUE}
 library(sf)
 library(stars)
 library(habCluster)
-library(dplyr)
 ```
 
 Read in habitat suitability index (HSI) data of wolf in Europe. The HSI values of the cells in the raster indicate how smoothly the wolfs can moved in the cells, and can be used to represent the connection between cells as habitat.
@@ -60,8 +59,8 @@ Or, we can discard small patches before plotting:
 
 ```{r discard, echo=TRUE, fig.height=5, fig.width=5}
 image(wolf, col = terrain.colors(100,rev = T), asp = 1)
-boundary$area = st_area(boundary)%>%as.numeric
-boundary = boundary %>% filter(area > 40000*40000)
+boundary$area = as.numeric(st_area(boundary))
+boundary = boundary[boundary$area > 40000*40000,]
 plot( boundary$geometry, add=TRUE, asp=1, border = "lightseagreen")
 ```
 

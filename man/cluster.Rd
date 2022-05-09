@@ -39,7 +39,6 @@ Choice of the method used to finding community structure(see Mukerjee, 2014). Th
 \examples{
 library(sf)
 library(stars)
-library(dplyr)
 
 # read in habitat suitability data of wolf in Europe
 library(stars)
@@ -57,17 +56,15 @@ boundary = clst$boundary
 plot( boundary$geometry, add=TRUE, asp=1, border = "lightseagreen")
 
 # discard patches smaller than 1600 sqkm
-boundary$area = st_area(boundary)\%>\%as.numeric
-boundary = boundary \%>\% filter(area > 40000*40000)
+boundary$area = as.numeric(st_area(boundary))
+boundary = boundary[boundary$area > 40000*40000,]
 image(wolf,col=terrain.colors(100,rev = TRUE),asp = 1)
 plot( boundary$geometry, add=TRUE, asp=1, border = "lightseagreen")
 
-# can also use RasterLayer object
-\dontrun{
+# can also use RasterLayer object#
 library(raster)
 wolf = read_stars(hsi.file)
 clst = cluster(wolf, method = cluster_leiden, cellsize = 40000, rp = 0.02)
-}
 }
 \references{
 Mukerjee, S. (2021). A systematic comparison of community detection algorithms for measuring selective exposure in co-exposure networks. Sci Rep 11, 15218. https://doi.org/10.1038/s41598-021-94724-1\cr
