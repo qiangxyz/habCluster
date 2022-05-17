@@ -1,3 +1,11 @@
+# habCluster 1.0.3
+## Minor Bug Fixes and Improvements
+* fix error in references describing the methods in DESCRIPTION.
+
+## Changes
+* small change on the the sample data.
+* change the default method for function cluster from cluster_louvain to cluster_fast_greedy
+
 # habCluster 1.0.2
 ## Minor Bug Fixes and Improvements
 * add references describing the methods in DESCRIPTION.
