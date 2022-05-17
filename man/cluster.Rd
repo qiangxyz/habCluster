@@ -6,9 +6,8 @@
 \usage{
 cluster(
   r = NULL,
-  method = igraph::cluster_louvain,
+  method = igraph::cluster_fast_greedy,
   cellsize = NULL,
-  rp = 1,
   silent = TRUE,
   ...
 )
@@ -20,11 +19,9 @@ cluster(
 
 \item{cellsize}{Numeric. Re-sample the input raster to given resolution and use the resampled raster to find community structure. Set this to NULL if using the original resolution of of the input raster,given the parameter r is an object of raster.}
 
-\item{rp}{Float. The resolution parameter for method of cluster_leiden. If cluster_leiden is chosen, use it to control the size of clusters. Higher resolution parameter lead to more smaller clusters, while lower resolution parameter lead to fewer larger clusters.}
-
 \item{silent}{Boolean. A logical indicating if some “progress report” should be given. Default is TRUE.}
 
-\item{...}{Optional arguments to method}
+\item{...}{Optional arguments to method. For example, can set resolution_parameter for cluster_leiden, or resolution for cluster_louvain.(see details below).}
 }
 \value{
 A polygon of sf object for boundaries of habitat clusters,
@@ -34,7 +31,7 @@ and an object of communities defined in package igraph.
 This function use Community Detection Algorithm to find structure of raster and return a polygon representing the boundary of the clusters.
 }
 \details{
-Choice of the method used to finding community structure(see Mukerjee, 2014). The default method is cluster_louvain, but could also be methods like cluster_leiden, cluster_walktrap, or cluster_fast_greedy. If cluster_leiden is chosen, then we can use resolution_parameter to control the size of clusters. Higher resolution_parameter lead to more smaller clusters, while lower resolution_parameter lead to fewer larger clusters.
+Choice of the method used to finding community structure(see Mukerjee, 2021). The default method is cluster_fast_greedy, but could also be methods like cluster_leiden, cluster_walktrap, or cluster_louvain. If cluster_leiden is chosen, then we can use resolution_parameter to control the size of clusters. Higher resolution_parameter lead to more smaller clusters, while lower resolution_parameter lead to fewer larger clusters. The parameter of resolution for cluster_louvain is similar. More details about those methods can be found in the document for package "igraph".
 }
 \examples{
 library(sf)
@@ -45,10 +42,12 @@ library(stars)
 hsi.file = system.file("extdata","wolf3_int.tif",package="habCluster")
 wolf = read_stars(hsi.file)
 
-# find habitat cluster using Leiden Algorithm.
-# Raster for habitat suitability will be resampled to 40 km, to reduce calculation amount.
-# Set cluster_resolution_parameter to 0.02 to control the cluster size.
-clst = cluster(wolf, method = cluster_leiden, cellsize = 40000, rp = 0.02)
+# rescale raster value to 0 - 1
+wolf = wolf / 100
+
+# find habitat cluster using Fast Greedy Algorithm.
+# Raster will be resampled to 40 km, to cluser at the scale of 40 km and reduce calculation amount.
+clst = cluster(wolf, method = cluster_fast_greedy, cellsize = 40000)
 
 # plot the results
 image(wolf,col=terrain.colors(100,rev = TRUE),asp = 1)
@@ -64,9 +63,10 @@ plot( boundary$geometry, add=TRUE, asp=1, border = "lightseagreen")
 # can also use RasterLayer object#
 library(raster)
 wolf = read_stars(hsi.file)
-clst = cluster(wolf, method = cluster_leiden, cellsize = 40000, rp = 0.02)
+wolf = wolf / 100
+clst = cluster(wolf, method = cluster_leiden, cellsize = 40000, resolution_parameter = 0.0002)
 }
 \references{
-Mukerjee, S. (2021). A systematic comparison of community detection algorithms for measuring selective exposure in co-exposure networks. Sci Rep 11, 15218. https://doi.org/10.1038/s41598-021-94724-1\cr
+Mukerjee, S. (2021). A systematic comparison of community detection algorithms for measuring selective exposure in co-exposure networks. Scientific reports 11, 15218. https://doi.org/10.1038/s41598-021-94724-1\cr
 Traag, V. A., Waltman, L., & van Eck, N. J. (2019). From Louvain to Leiden: guaranteeing well-connected communities. Scientific reports, 9(1), 5233. doi: 10.1038/s41598-019-41695-z\cr
 }

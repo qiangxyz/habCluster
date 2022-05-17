@@ -7,7 +7,7 @@ test_that("cluster method", {
   hsi.file = system.file("extdata","wolf3_int.tif",package="habCluster")
   wolf = read_stars(hsi.file)
 
-  clst = cluster(wolf, method = cluster_leiden, cellsize = 80000, rp = 0.02)
+  clst = cluster(wolf, method = cluster_leiden, cellsize = 80000)
 
   # check results are right objects
   testthat::expect_s3_class(clst$boundary,"sf")
