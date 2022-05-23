@@ -63,7 +63,7 @@ DataFrame getEdgeDF(NumericMatrix &m){
           if (r0 == r1 || c0 == c1) {
             w = 0.5 * (m(r0,c0) + m(r1,c1));
           } else{
-            w =  0.7071068 * (m(r0,c0) + m(r1,c1));
+            w =  0.35355339059 * (m(r0,c0) + m(r1,c1));
           }
 
           oldEdges[from].insert(to);

@@ -4,12 +4,14 @@
 \alias{raster2Graph}
 \title{Create a graph from an raster according the connection between cells}
 \usage{
-raster2Graph(r, cellsize = NULL, silent = TRUE)
+raster2Graph(r, cellsize = NULL, relative.distance = TRUE, silent = TRUE)
 }
 \arguments{
 \item{r}{An object of stars or RasterLayer. The value of each cell of the raster is the ‘smoothness’ to indicate how easy the cell connecting with neighbor cells.}
 
 \item{cellsize}{Numeric. Re-sample the input raster to given resolution and use the re-sampled raster to build graph. Set this to NULL if using the original resolution of of the input raster.}
+
+\item{relative.distance}{Boolean. If FALSE, absolute distance between cells is used to compute the edge weight; otherwise, relative distance between cells is used . Default is TRUE.}
 
 \item{silent}{Boolean. A logical indicating if some “progress report” should be given. Default is TRUE.}
 }

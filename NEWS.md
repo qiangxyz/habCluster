@@ -1,3 +1,5 @@
+# habCluster 1.0.4
+
 # habCluster 1.0.3
 ## Minor Bug Fixes and Improvements
 * fix error in references describing the methods in DESCRIPTION.
