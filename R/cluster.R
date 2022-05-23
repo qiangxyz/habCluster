@@ -7,6 +7,7 @@
 #' @param r An object of stars or RasterLayer. The value of each cell of the raster is the ‘smoothness’ to indicate how easy the cell connecting with neighbor cells.
 #' @param method method from package igraph used to finding community structure. (see details below).
 #' @param cellsize Numeric. Re-sample the input raster to given resolution and use the resampled raster to find community structure. Set this to NULL if using the original resolution of of the input raster,given the parameter r is an object of raster.
+#' @param relative.distance Boolean. If FALSE, absolute distance between cells is used to compute the edge weight; otherwise, relative distance between cells is used . Default is TRUE.
 #' @param silent Boolean. A logical indicating if some “progress report” should be given. Default is TRUE.
 #' @param ... Optional arguments to method. For example, can set resolution_parameter for cluster_leiden, or resolution for cluster_louvain.(see details below).
 #'
@@ -25,7 +26,6 @@
 #' library(stars)
 #'
 #' # read in habitat suitability data of wolf in Europe
-#' library(stars)
 #' hsi.file = system.file("extdata","wolf3_int.tif",package="habCluster")
 #' wolf = read_stars(hsi.file)
 #'
@@ -54,9 +54,9 @@
 #' clst = cluster(wolf, method = cluster_leiden, cellsize = 40000, resolution_parameter = 0.0002)
 
 
-cluster <- function(r=NULL, method=igraph::cluster_fast_greedy, cellsize=NULL, silent=TRUE,...){
+cluster <- function(r=NULL, method=igraph::cluster_fast_greedy, cellsize=NULL, relative.distance = TRUE, silent=TRUE,...){
 
-  g = raster2Graph(r, cellsize, silent)
+  g = raster2Graph(r, cellsize = cellsize, relative.distance = relative.distance, silent = silent)
 
   if(!silent){
     cat('\nfinding clusters...')

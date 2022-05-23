@@ -1,3 +1,8 @@
+# habCluster 1.0.4
+## Minor Bug Fixes and Improvements
+* fix error in getEdge.cpp.
+* add an optional parameter relative.distance in function raster2Gaph and function cluster.
+
 # habCluster 1.0.3
 ## Minor Bug Fixes and Improvements
 * fix error in references describing the methods in DESCRIPTION.

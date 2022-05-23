@@ -3,6 +3,7 @@
 #'
 #' @param r  An object of stars or RasterLayer. The value of each cell of the raster is the ‘smoothness’ to indicate how easy the cell connecting with neighbor cells.
 #' @param cellsize Numeric. Re-sample the input raster to given resolution and use the re-sampled raster to build graph. Set this to NULL if using the original resolution of of the input raster.
+#' @param relative.distance Boolean. If FALSE, absolute distance between cells is used to compute the edge weight; otherwise, relative distance between cells is used . Default is TRUE.
 #' @param silent Boolean. A logical indicating if some “progress report” should be given. Default is TRUE.
 #'
 #' @return a list with an graph and the re-sampled raster (a object of stars). The graph is igraph object, with cells as node and connections as weight.
@@ -16,7 +17,7 @@
 #' # build graph from raster
 #' g = raster2Graph(wolf, 40000)
 
-raster2Graph  <- function(r, cellsize=NULL,silent=TRUE){
+raster2Graph  <- function(r, cellsize=NULL, relative.distance = TRUE, silent=TRUE){
 
   if(is(r,"RasterLayer")){
     r = stars::st_as_stars(r)
@@ -37,6 +38,16 @@ raster2Graph  <- function(r, cellsize=NULL,silent=TRUE){
   cat('\nextracting edges...')
   }
   edf = getEdgeDF(matrix)
+  if(relative.distance == FALSE){
+    dim = stars::st_dimensions(r2)
+    res.x = abs(dim$x$delta)
+    res.y = abs(dim$y$delta)
+    if(res.x != res.y){
+      stop("Cell size in the x and y dimension are not equal.")
+    }
+
+    edf$weight = edf$weight * res.x
+  }
   if(!silent){
   cat('\ncreate graph...')
   }

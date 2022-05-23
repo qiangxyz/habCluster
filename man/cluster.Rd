@@ -8,6 +8,7 @@ cluster(
   r = NULL,
   method = igraph::cluster_fast_greedy,
   cellsize = NULL,
+  relative.distance = TRUE,
   silent = TRUE,
   ...
 )
@@ -18,6 +19,8 @@ cluster(
 \item{method}{method from package igraph used to finding community structure. (see details below).}
 
 \item{cellsize}{Numeric. Re-sample the input raster to given resolution and use the resampled raster to find community structure. Set this to NULL if using the original resolution of of the input raster,given the parameter r is an object of raster.}
+
+\item{relative.distance}{Boolean. If FALSE, absolute distance between cells is used to compute the edge weight; otherwise, relative distance between cells is used . Default is TRUE.}
 
 \item{silent}{Boolean. A logical indicating if some “progress report” should be given. Default is TRUE.}
 
@@ -38,7 +41,6 @@ library(sf)
 library(stars)
 
 # read in habitat suitability data of wolf in Europe
-library(stars)
 hsi.file = system.file("extdata","wolf3_int.tif",package="habCluster")
 wolf = read_stars(hsi.file)
 
