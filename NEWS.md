@@ -1,3 +1,6 @@
+# habCluster 1.0.5
+** fix date in DESCRIPTION.
+
 # habCluster 1.0.4
 ## Minor Bug Fixes and Improvements
 * fix error in getEdge.cpp.

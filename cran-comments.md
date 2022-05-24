@@ -1,7 +1,6 @@
 ## Resubmission
 This is a resubmission. In this version I have:
-* fix error in getEdge.cpp.
-* add an optional parameter relative.distance in function raster2Gaph and function cluster.
+* fix date in DESCRIPTION.
 
 ## R CMD check results
 

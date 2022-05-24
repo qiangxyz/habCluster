@@ -1,8 +1,8 @@
 Package: habCluster
 Type: Package
 Title: Detecting Spatial Clustering Based on Connection Cost Between Grids
-Version: 1.0.4
-Date: 2022-04-21
+Version: 1.0.5
+Date: 2022-05-24
 Author: Qiang Dai
 Maintainer: Qiang Dai <daiqiang@cib.ac.cn>
 Description: Based on landscape connectivity, spatial boundaries were
